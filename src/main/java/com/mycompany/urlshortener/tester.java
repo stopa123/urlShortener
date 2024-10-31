@@ -13,7 +13,7 @@ public class tester {
     @Test
     public void givenRequest_whenFetchTaxiFareRateCard_thanOK() {
 
-        TestRestTemplate testRestTemplate = new TestRestTemplate();
+      //  TestRestTemplate testRestTemplate = new TestRestTemplate();
 
         TaxiRide taxiRide = new TaxiRide(true, 10l);
 

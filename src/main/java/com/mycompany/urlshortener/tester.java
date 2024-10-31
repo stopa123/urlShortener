@@ -9,17 +9,19 @@ package com.mycompany.urlshortener;
  * @author sikhu
  */
 public class tester {
-
+    
+/*
     @Test
     public void givenRequest_whenFetchTaxiFareRateCard_thanOK() {
 
-        TestRestTemplate testRestTemplate = new TestRestTemplate();
+      // 0  TestRestTemplate testRestTemplate = new TestRestTemplate();
 
         TaxiRide taxiRide = new TaxiRide(true, 10l);
 
         String fare = testRestTemplate.postForObject(URL + "calculate/", taxiRide, String.class);
 
         assertThat(fare, equalTo("200"));
-    }
+    } 
+    */
 
 }

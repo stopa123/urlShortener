@@ -38,7 +38,7 @@ public class RequestCachingFilter extends OncePerRequestFilter {
         CachedHttpServletRequest cachedHttpServletRequest = new CachedHttpServletRequest(request);
         LOGGER.info("REQUEST DATA: " + IOUtils.toString(cachedHttpServletRequest.getInputStream()));/*Actual Code that has error*/
 
-        //LOGGER.info("REQUEST DATA: ", cachedHttpServletRequest.getInputStream(), StandardCharsets.UTF_8);//mdofifications from here.
+       // LOGGER.info("REQUEST DATA: ", cachedHttpServletRequest.getInputStream(), StandardCharsets.UTF_8);//mdofifications from here.
         filterChain.doFilter(cachedHttpServletRequest, response);
     }
 }

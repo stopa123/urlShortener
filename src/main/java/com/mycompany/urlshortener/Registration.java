@@ -119,6 +119,11 @@ public class Registration {
         this.email = email;
         this.password = password;
     }
+    
+     @JsonCreator
+    public Registration(@JsonProperty("email") String email) {
+        this.firstname = getFirstname();
+    }
 
     //temporal uuid
     public String getUID() {

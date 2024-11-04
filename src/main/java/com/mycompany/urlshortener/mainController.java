@@ -94,12 +94,14 @@ public class mainController {
     public String Login(@RequestBody Registration reg) {
 
         Optional<Registration> data = regRepo.findFirstnameByEmailAndPassword(reg.getEmail(), reg.getPassword());
-
-        if (data.isPresent()) {
+        
+        String verifyLogin = (data.isPresent()) ? reg.getUID() + "\n" + reg.getFirstname() : "Invalid Login Information";
+        return verifyLogin;
+        /*  if (data.isPresent()) {
             return reg.getUID();
         } else {
             return "Invalid Login Information";
-        }
+        } */
 
     }
 

@@ -4,11 +4,15 @@
  */
 package com.mycompany.urlshortener;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import java.util.UUID;
 import jakarta.persistence.Id;
+import java.util.UUID;
 
 /**
  *
@@ -24,7 +28,7 @@ public class Registration {
     @Column(nullable = false, unique = true)
     private String email;
 
-   @Column(nullable = false, unique = true)
+    @Column(nullable = false, unique = true)
     private String phone;
 
     @Column(nullable = false)
@@ -96,6 +100,9 @@ public class Registration {
         this.password = password;
     }
 
+    public Registration() {
+    }
+
     //constructor to add registering user details;
     public Registration(String email, String phone, String firstname, String lastname, String organization, String password) {
         this.email = email;
@@ -104,6 +111,21 @@ public class Registration {
         this.lastname = lastname;
         this.organization = organization;
         this.password = password;
+    }
+
+    //constructor to allow users to login with password and email address
+    @JsonCreator
+    public Registration(@JsonProperty("email") String email, @JsonProperty("password") String password) {
+        this.email = email;
+        this.password = password;
+    }
+
+    //temporal uuid
+    public String getUID() {
+        
+         String uuid = UUID.randomUUID().toString();
+
+        return uuid;
     }
 
 }

@@ -85,7 +85,21 @@ public class mainController {
         );
 
         regRepo.save(regi);
-        return "It Worked to the end!!";
+        return "Thank you for registering to Short URL by Vinnoce (Pty) LTD";
+
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String Login(@RequestBody Registration reg) {
+
+        Optional<Registration> data = regRepo.findFirstnameByEmailAndPassword(reg.getEmail(), reg.getPassword());
+
+        if (data.isPresent()) {
+            return reg.getUID();
+        } else {
+            return "Invalid Login Information";
+        }
 
     }
 

@@ -3,6 +3,5 @@ com\mycompany\urlshortener\UrlShortener.class
 com\mycompany\urlshortener\Registration.class
 com\mycompany\urlshortener\Repo.class
 com\mycompany\urlshortener\urlShortenerMethods.class
-com\mycompany\urlshortener\Login.class
 com\mycompany\urlshortener\JpaConfig.class
 com\mycompany\urlshortener\RegRepo.class

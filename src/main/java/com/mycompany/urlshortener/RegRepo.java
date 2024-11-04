@@ -11,8 +11,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
  *
  * @author sikhu
  */
-public interface RegRepo extends JpaRepository<Registration, Integer>  {
-    
-    Optional <Registration> findFirstnameByEmail(String Email);
-    
+public interface RegRepo extends JpaRepository<Registration, Integer> {
+
+    Optional<Registration> findFirstnameByEmail(String Email);
+
+    Optional<Registration> findFirstnameByEmailAndPassword(String Email, String Password);
+
 }

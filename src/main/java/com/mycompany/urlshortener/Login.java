@@ -9,9 +9,8 @@ package com.mycompany.urlshortener;
  * @author sikhu
  */
 
-/*
-1. Get 
-*/
+// ALTER TABLE REGISTRATION ADD CONSTRAINT UNIQUE (EMAIL);
+
 
 
 public class Login {

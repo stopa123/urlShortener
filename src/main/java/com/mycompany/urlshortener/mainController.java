@@ -81,7 +81,6 @@ public class mainController {
                 reg.getFirstname(),
                 reg.getLastname(),
                 reg.getOrganization(),
-                reg.getUsername(),
                 reg.getPassword()
         );
 

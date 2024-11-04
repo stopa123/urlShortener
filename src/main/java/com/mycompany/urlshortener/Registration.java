@@ -4,6 +4,7 @@
  */
 package com.mycompany.urlshortener;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,13 +21,22 @@ public class Registration {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(nullable = false, unique = true)
     private String email;
+
+   @Column(nullable = false, unique = true)
     private String phone;
+
+    @Column(nullable = false)
     private String firstname;
+
+    @Column(nullable = false)
     private String lastname;
+
+    @Column(nullable = false)
     private String organization;
 
-    private String username;
+    @Column(nullable = false)
     private String password;
 
     //setters and getters
@@ -78,14 +88,6 @@ public class Registration {
         this.organization = organization;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -95,13 +97,12 @@ public class Registration {
     }
 
     //constructor to add registering user details;
-    public Registration(String email, String phone, String firstname, String lastname, String organization, String username, String password) {
+    public Registration(String email, String phone, String firstname, String lastname, String organization, String password) {
         this.email = email;
         this.phone = phone;
         this.firstname = firstname;
         this.lastname = lastname;
         this.organization = organization;
-        this.username = username;
         this.password = password;
     }
 

@@ -1,10 +1,7 @@
 com\mycompany\urlshortener\mainController.class
 com\mycompany\urlshortener\UrlShortener.class
+com\mycompany\urlshortener\Registration.class
 com\mycompany\urlshortener\Repo.class
 com\mycompany\urlshortener\urlShortenerMethods.class
-com\mycompany\urlshortener\RequestLoggingFilterConfig.class
 com\mycompany\urlshortener\JpaConfig.class
-com\mycompany\urlshortener\RequestCachingFilter.class
-com\mycompany\urlshortener\CachedServletInputStream.class
-com\mycompany\urlshortener\CachedHttpServletRequest$1.class
-com\mycompany\urlshortener\CachedHttpServletRequest.class
+com\mycompany\urlshortener\RegRepo.class

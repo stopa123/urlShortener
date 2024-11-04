@@ -22,6 +22,9 @@ public class mainController {
 
     @Autowired
     public Repo repo;
+    
+    @Autowired
+    public RegRepo regRepo;
 
     //POST URL TO DATABASE METHOD
     @RequestMapping(value = "/posturl", method = RequestMethod.POST)
@@ -65,6 +68,18 @@ public class mainController {
         }
 
         return idd; //getData;
+    }
+
+    //POST URL TO DATABASE METHOD
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @ResponseBody
+    public String RegisterUser(@RequestBody Registration reg) {
+
+        Registration regi = new Registration(reg.getEmail(), reg.getPhone(), reg.getFirstname(), reg.getLastname(), reg.getOrganization());
+
+        regRepo.save(regi);
+        return "It Worked to the end!!";
+
     }
 
 }

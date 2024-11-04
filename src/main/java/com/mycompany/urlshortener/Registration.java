@@ -15,19 +15,21 @@ import jakarta.persistence.Id;
  */
 @Entity(name = "REGISTRATION")
 public class Registration {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    
+
     private String email;
     private String phone;
     private String firstname;
     private String lastname;
     private String organization;
-    
-    //setters and getters
 
+    private String username;
+    private String password;
+
+    //setters and getters
     public Integer getId() {
         return id;
     }
@@ -75,15 +77,32 @@ public class Registration {
     public void setOrganization(String organization) {
         this.organization = organization;
     }
-    
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     //constructor to add registering user details;
-    public Registration(String email, String phone, String firstname, String lastname, String organization) {
+    public Registration(String email, String phone, String firstname, String lastname, String organization, String username, String password) {
         this.email = email;
         this.phone = phone;
         this.firstname = firstname;
         this.lastname = lastname;
         this.organization = organization;
+        this.username = username;
+        this.password = password;
     }
-    
-   
+
 }

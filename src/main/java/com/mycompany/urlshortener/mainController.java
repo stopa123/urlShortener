@@ -22,7 +22,7 @@ public class mainController {
 
     @Autowired
     public Repo repo;
-    
+
     @Autowired
     public RegRepo regRepo;
 
@@ -75,7 +75,15 @@ public class mainController {
     @ResponseBody
     public String RegisterUser(@RequestBody Registration reg) {
 
-        Registration regi = new Registration(reg.getEmail(), reg.getPhone(), reg.getFirstname(), reg.getLastname(), reg.getOrganization());
+        Registration regi = new Registration(
+                reg.getEmail(),
+                reg.getPhone(),
+                reg.getFirstname(),
+                reg.getLastname(),
+                reg.getOrganization(),
+                reg.getUsername(),
+                reg.getPassword()
+        );
 
         regRepo.save(regi);
         return "It Worked to the end!!";

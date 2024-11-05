@@ -5,3 +5,4 @@ com\mycompany\urlshortener\Repo.class
 com\mycompany\urlshortener\urlShortenerMethods.class
 com\mycompany\urlshortener\JpaConfig.class
 com\mycompany\urlshortener\RegRepo.class
+com\mycompany\urlshortener\jwtTokenMain.class

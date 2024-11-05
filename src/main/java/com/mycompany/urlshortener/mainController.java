@@ -70,7 +70,7 @@ public class mainController {
         return idd; //getData;
     }
 
-    //POST URL TO DATABASE METHOD
+    //REGISTER A NEW USER
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     @ResponseBody
     public String RegisterUser(@RequestBody Registration reg) {
@@ -83,10 +83,8 @@ public class mainController {
                 reg.getOrganization(),
                 reg.getPassword()
         );
-
         regRepo.save(regi);
         return "Thank you for registering to Short URL by Vinnoce (Pty) LTD";
-
     }
 
     @ResponseBody
@@ -94,14 +92,17 @@ public class mainController {
     public String Login(@RequestBody Registration reg) {
 
         Optional<Registration> data = regRepo.findFirstnameByEmailAndPassword(reg.getEmail(), reg.getPassword());
-        
-        String verifyLogin = (data.isPresent()) ? reg.getUID() + "\n" + reg.getFirstname() : "Invalid Login Information";
-        return verifyLogin;
-        /*  if (data.isPresent()) {
-            return reg.getUID();
+
+        if (data.isPresent()) {
+
+            reg = data.get();
+            String firstname = reg.getFirstname();
+            return reg.getUID() + "\n" + firstname;
+
+            // return " it worked";
         } else {
             return "Invalid Login Information";
-        } */
+        }
 
     }
 

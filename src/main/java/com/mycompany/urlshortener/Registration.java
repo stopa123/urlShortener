@@ -103,7 +103,7 @@ public class Registration {
     public Registration() {
     }
 
-    //constructor to add registering user details;
+    //constructor to add registering user details
     public Registration(String email, String phone, String firstname, String lastname, String organization, String password) {
         this.email = email;
         this.phone = phone;
@@ -112,19 +112,7 @@ public class Registration {
         this.organization = organization;
         this.password = password;
     }
-
-    //constructor to allow users to login with password and email address
-    @JsonCreator
-    public Registration(@JsonProperty("email") String email, @JsonProperty("password") String password) {
-        this.email = email;
-        this.password = password;
-    }
     
-     @JsonCreator
-    public Registration(@JsonProperty("email") String email) {
-        this.firstname = getFirstname();
-    }
-
     //temporal uuid
     public String getUID() {
         

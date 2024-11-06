@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
  *
  * @author sikhu
  */
+
+/*
 @Controller
 public class mainController {
 
@@ -82,7 +84,7 @@ public class mainController {
                 reg.getLastname(),
                 reg.getOrganization(),
                 reg.getPassword()
-        );
+        ) {};
         regRepo.save(regi);
         return "Thank you for registering to Short URL by Vinnoce (Pty) LTD";
     }
@@ -107,3 +109,5 @@ public class mainController {
     }
 
 }
+
+*/

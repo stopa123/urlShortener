@@ -10,6 +10,7 @@ package com.mycompany.urlshortener;
  */
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -18,18 +19,20 @@ import org.springframework.stereotype.Service;
 public class AuthenticationService {
 
     private final RegRepo regRepo;
+    private final Repo repo;
 
     private final PasswordEncoder passwordEncoder;
 
     private final AuthenticationManager authenticationManager;
 
-    public AuthenticationService(RegRepo regRepo, AuthenticationManager authenticationManager, PasswordEncoder passwordEncoder) {
+    public AuthenticationService(RegRepo regRepo, AuthenticationManager authenticationManager, PasswordEncoder passwordEncoder, Repo repo) {
         this.authenticationManager = authenticationManager;
         this.regRepo = regRepo;
+        this.repo = repo;
         this.passwordEncoder = passwordEncoder;
     }
 
-    public Registration signup(Registration input) { //email, phone, firstname,lastname,organization,password
+    public Registration signup(Registration input) {
         Registration user = new Registration();
 
         user.setEmail(input.getEmail());
@@ -46,7 +49,22 @@ public class AuthenticationService {
 
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(input.getEmail(), input.getPassword()));
 
-        return regRepo.findFirstnameByEmail(input.getEmail())
-                .orElseThrow();
+        return regRepo.findFirstnameByEmail(input.getEmail()).orElseThrow();
+    }
+
+    public urlShortenerMethods createURL(urlShortenerMethods us, Registration reg) {
+
+        urlShortenerMethods usm = new urlShortenerMethods(); //call shortener methods class
+        urlShortenerMethods plz = new urlShortenerMethods(); //generate short URL using empty Constructor.
+
+        usm.setlongURL(us.getlongURL());
+        usm.setshortenedURL(plz.getshortenedURL());
+        
+        //set verification condition here.
+        
+
+        urlShortenerMethods longURL = new urlShortenerMethods(us.getlongURL(), plz.getshortenedURL()); //constructor to save into Database 
+        return repo.save(longURL);
+
     }
 }

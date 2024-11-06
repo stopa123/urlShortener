@@ -46,4 +46,13 @@ public class AuthenticationController {
         return ResponseEntity.ok(loginResponse);
 
     }
+
+    @PostMapping("/createURL") //POST
+    public ResponseEntity<urlShortenerMethods> createURL(@RequestBody urlShortenerMethods us, Registration input) {
+
+        urlShortenerMethods createURL = authenticationService.createURL(us);
+
+        return ResponseEntity.ok(createURL);
+    }
+
 }

@@ -2,12 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.urlshortener;
+package com.mycompany.urlshortener.controllers;
 
 /**
  *
  * @author sikhu
  */
+import com.mycompany.urlshortener.services.AuthenticationService;
+import com.mycompany.urlshortener.services.JwtService;
+import com.mycompany.urlshortener.LoginResponse;
+import com.mycompany.urlshortener.entities.Registration;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -47,12 +51,5 @@ public class AuthenticationController {
 
     }
 
-    @PostMapping("/createURL")
-    public ResponseEntity<String> createURL(@RequestBody Registration input, urlShortenerMethods us ) {
-
-        String createURL = authenticationService.createURL(input, us);
-
-        return ResponseEntity.ok(createURL);
-    }
 
 }

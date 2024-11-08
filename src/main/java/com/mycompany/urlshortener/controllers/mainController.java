@@ -2,8 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.urlshortener;
+package com.mycompany.urlshortener.controllers;
 
+import com.mycompany.urlshortener.entities.Registration;
+import com.mycompany.urlshortener.entities.urlShortenerMethods;
+import com.mycompany.urlshortener.repositories.Repo;
+import com.mycompany.urlshortener.repositories.RegRepo;
 import java.net.MalformedURLException;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +21,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
  *
  * @author sikhu
  */
-
-/*
 @Controller
 public class mainController {
 
@@ -29,13 +31,22 @@ public class mainController {
     public RegRepo regRepo;
 
     //POST URL TO DATABASE METHOD
-    @RequestMapping(value = "/posturl", method = RequestMethod.POST)
+    @RequestMapping(value = "/jcreateurl", method = RequestMethod.POST)
     @ResponseBody
-    public String POSTM(@RequestBody urlShortenerMethods us) {
-
+    public String POSTM(@RequestBody urlShortenerMethods us, Registration reg) {
+      
         urlShortenerMethods plz = new urlShortenerMethods(); //generate short URL using empty Constructor.
-        urlShortenerMethods longURL = new urlShortenerMethods(us.getlongURL(), plz.getshortenedURL()); //constructor to save into Database 
-        repo.save(longURL);
+        String email = reg.getEmail();
+        
+        
+        if (regRepo.findFirstnameByEmail(email).isPresent()) {
+
+            urlShortenerMethods longURL = new urlShortenerMethods(us.getlongURL(), plz.getshortenedURL()); //constructor to save into Database 
+            
+            repo.save(longURL);
+        } else {
+            return "This user is invalid";
+        }
 
         return plz.getshortenedURL();
     }
@@ -84,7 +95,8 @@ public class mainController {
                 reg.getLastname(),
                 reg.getOrganization(),
                 reg.getPassword()
-        ) {};
+        ) {
+        };
         regRepo.save(regi);
         return "Thank you for registering to Short URL by Vinnoce (Pty) LTD";
     }
@@ -98,10 +110,10 @@ public class mainController {
         if (data.isPresent()) {
 
             reg = data.get();
+            //
             String firstname = reg.getFirstname();
             return reg.getUID() + "\n" + firstname;
-
-            // return " it worked";
+//
         } else {
             return "Invalid Login Information";
         }
@@ -109,5 +121,3 @@ public class mainController {
     }
 
 }
-
-*/

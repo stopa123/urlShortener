@@ -1,13 +1,3 @@
-com\mycompany\urlshortener\AuthenticationService.class
 com\mycompany\urlshortener\JwtAuthenticationFilter.class
-com\mycompany\urlshortener\UrlShortener.class
-com\mycompany\urlshortener\Registration.class
-com\mycompany\urlshortener\AuthenticationController.class
-com\mycompany\urlshortener\Repo.class
-com\mycompany\urlshortener\urlShortenerMethods.class
-com\mycompany\urlshortener\LoginResponse.class
-com\mycompany\urlshortener\ApplicationConfiguration.class
-com\mycompany\urlshortener\JpaConfig.class
-com\mycompany\urlshortener\RegRepo.class
 com\mycompany\urlshortener\JwtService.class
 com\mycompany\urlshortener\SecurityConfiguration.class

@@ -4,120 +4,37 @@
  */
 package com.mycompany.urlshortener.controllers;
 
-import com.mycompany.urlshortener.entities.Registration;
+import com.mycompany.urlshortener.Authorization;
 import com.mycompany.urlshortener.entities.urlShortenerMethods;
-import com.mycompany.urlshortener.repositories.Repo;
-import com.mycompany.urlshortener.repositories.RegRepo;
-import java.net.MalformedURLException;
-import java.util.Optional;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import com.mycompany.urlshortener.services.JwtService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  *
  * @author sikhu
  */
-@Controller
+@RequestMapping("/auth")
+@RestController
 public class mainController {
 
-    @Autowired
-    public Repo repo;
+    private final JwtService jwtService;
+    private final Authorization authManager;
 
-    @Autowired
-    public RegRepo regRepo;
-
-    //POST URL TO DATABASE METHOD
-    @RequestMapping(value = "/jcreateurl", method = RequestMethod.POST)
-    @ResponseBody
-    public String POSTM(@RequestBody urlShortenerMethods us, Registration reg) {
-      
-        urlShortenerMethods plz = new urlShortenerMethods(); //generate short URL using empty Constructor.
-        String email = reg.getEmail();
-        
-        
-        if (regRepo.findFirstnameByEmail(email).isPresent()) {
-
-            urlShortenerMethods longURL = new urlShortenerMethods(us.getlongURL(), plz.getshortenedURL()); //constructor to save into Database 
-            
-            repo.save(longURL);
-        } else {
-            return "This user is invalid";
-        }
-
-        return plz.getshortenedURL();
+    public mainController(JwtService jwtService, Authorization authManager) {
+        this.jwtService = jwtService;
+        this.authManager = authManager;
     }
 
-    //GET URL FROM DATABASE METHOD
-    @ResponseBody
-    @RequestMapping(value = "/geturl", method = RequestMethod.GET)
-    public String GETM(@RequestBody urlShortenerMethods us) throws MalformedURLException {
-        Optional<urlShortenerMethods> data = repo.findUrlByshortenedURL(us.getshortenedURL());
+    @PostMapping("/create")
+    public ResponseEntity<urlShortenerMethods> register(@RequestBody urlShortenerMethods usm) throws Exception {
 
-        String getURL = null;
+        urlShortenerMethods auth = authManager.AuthenticateUserForURLReg(usm);
 
-        if (data.isPresent()) {
-            us = data.get(); //get data
-            getURL = us.getlongURL(); //get url as string from data.
-        }
-        return getURL; //getData; 
-    }
-
-    //DELETE URL IN DATABASE METHOD
-    @ResponseBody
-    @RequestMapping(value = "/deleteurl", method = RequestMethod.DELETE)
-    public Integer DELETEM(@RequestBody urlShortenerMethods us) throws MalformedURLException {
-        Optional<urlShortenerMethods> data = repo.findUrlByshortenedURL(us.getshortenedURL());
-        long id = 0;
-        Integer idd = (int) id;
-
-        if (data.isPresent()) {
-            us = data.get();
-            idd = us.getId();
-            repo.deleteById(idd);
-        }
-
-        return idd; //getData;
-    }
-
-    //REGISTER A NEW USER
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
-    @ResponseBody
-    public String RegisterUser(@RequestBody Registration reg) {
-
-        Registration regi = new Registration(
-                reg.getEmail(),
-                reg.getPhone(),
-                reg.getFirstname(),
-                reg.getLastname(),
-                reg.getOrganization(),
-                reg.getPassword()
-        ) {
-        };
-        regRepo.save(regi);
-        return "Thank you for registering to Short URL by Vinnoce (Pty) LTD";
-    }
-
-    @ResponseBody
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String Login(@RequestBody Registration reg) {
-
-        Optional<Registration> data = regRepo.findFirstnameByEmailAndPassword(reg.getEmail(), reg.getPassword());
-
-        if (data.isPresent()) {
-
-            reg = data.get();
-            //
-            String firstname = reg.getFirstname();
-            return reg.getUID() + "\n" + firstname;
-//
-        } else {
-            return "Invalid Login Information";
-        }
-
+        return ResponseEntity.ok(auth);
     }
 
 }

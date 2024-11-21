@@ -4,10 +4,6 @@
  */
 package com.mycompany.urlshortener.services;
 
-/**
- *
- * @author sikhu
- */
 import com.mycompany.urlshortener.repositories.RegRepo;
 import com.mycompany.urlshortener.entities.Registration;
 import com.mycompany.urlshortener.repositories.Repo;
@@ -20,15 +16,12 @@ import org.springframework.stereotype.Service;
 public class AuthenticationService {
 
     private final RegRepo regRepo;
-    private final Repo repo;
-
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
 
     public AuthenticationService(RegRepo regRepo, AuthenticationManager authenticationManager, PasswordEncoder passwordEncoder, Repo repo) {
         this.authenticationManager = authenticationManager;
         this.regRepo = regRepo;
-        this.repo = repo;
         this.passwordEncoder = passwordEncoder;
     }
 

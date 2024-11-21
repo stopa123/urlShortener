@@ -4,22 +4,16 @@
  */
 package com.mycompany.urlshortener.repositories;
 
-import com.mycompany.urlshortener.entities.Registration;
+import com.mycompany.urlshortener.entities.Login;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author sikhu
  */
-@Repository
-public interface RegRepo extends JpaRepository<Registration, Integer> {
+public interface LoginRepo extends JpaRepository<Login, Long> {
 
-    Optional<Registration> findFirstnameByEmail(String Email);
-
-    Optional<Registration> findFirstnameByEmailAndPassword(String Email, String Password);
+    Optional<Login> findByToken(String token);
 
 }
-
-

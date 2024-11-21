@@ -13,10 +13,11 @@ import org.springframework.stereotype.Repository;
  *
  * @author sikhu
  */
-
 @Repository
 public interface Repo extends JpaRepository<urlShortenerMethods, Integer> {
-    
-     Optional <urlShortenerMethods> findUrlByshortenedURL(String shortenedURL);
-    
+
+    Optional<urlShortenerMethods> findUrlByshortenedURL(String shortenedURL);
+
+    Optional<urlShortenerMethods> findIdByDescriptionAndEmail(String description, String email);
+
 }

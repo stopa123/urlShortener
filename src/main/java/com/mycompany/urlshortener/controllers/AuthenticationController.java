@@ -12,6 +12,8 @@ import com.mycompany.urlshortener.services.AuthenticationService;
 import com.mycompany.urlshortener.services.JwtService;
 import com.mycompany.urlshortener.LoginResponse;
 import com.mycompany.urlshortener.entities.Registration;
+import com.mycompany.urlshortener.repositories.LoginRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,25 +33,27 @@ public class AuthenticationController {
         this.authenticationService = authenticationService;
     }
 
-    @PostMapping("/signup") //POST
+    @PostMapping("/signup")
     public ResponseEntity<Registration> register(@RequestBody Registration registerUser) {
+
         Registration registeredUser = authenticationService.signup(registerUser);
+
         return ResponseEntity.ok(registeredUser);
     }
 
-    @PostMapping("/login") //POST 
+    @PostMapping("/login")
     public ResponseEntity<LoginResponse> authenticate(@RequestBody Registration loginUser) {
+       
         Registration authenticatedUser = authenticationService.authenticate(loginUser);
 
         String jwtToken = jwtService.generateToken(authenticatedUser);
 
         LoginResponse loginResponse = new LoginResponse();
+
         loginResponse.setToken(jwtToken);
         loginResponse.setExpiresIn(jwtService.getExpirationTime());
 
         return ResponseEntity.ok(loginResponse);
-
     }
-
 
 }

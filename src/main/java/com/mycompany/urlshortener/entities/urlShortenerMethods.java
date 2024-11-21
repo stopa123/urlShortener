@@ -23,6 +23,8 @@ public class urlShortenerMethods {
     private Integer id;
 
     private String longURL;
+    private String email;
+    private String description;
     private String shortenedURL = "https://www.vinnoce.com/" + Key();
 
     public Integer getId() {
@@ -37,6 +39,22 @@ public class urlShortenerMethods {
         return longURL;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public void setlongURL(String longURL) {
         this.longURL = longURL;
     }
@@ -49,13 +67,13 @@ public class urlShortenerMethods {
         this.shortenedURL = shortenedURL;
     }
 
-     //empty constructor
+    //empty constructor
     public urlShortenerMethods() {
         super();
         this.longURL = getlongURL();
         this.shortenedURL = getshortenedURL();
     }
-    
+
     //contructor to get url only
     public urlShortenerMethods(String longURL) {
         super();
@@ -69,7 +87,7 @@ public class urlShortenerMethods {
         this.shortenedURL = shortenedURL;
     }
 
-    //Generate Random Number
+    //Generate Unique Number
     public static String Key() {
         KeyGenerator kg = null;
 

@@ -24,6 +24,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 
 import java.io.IOException;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -71,7 +72,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
             filterChain.doFilter(request, response);
             
-        } catch (Exception exception) {
+        } catch (ServletException | IOException | UsernameNotFoundException exception) {
             handlerExceptionResolver.resolveException(request, response, null, exception);
         }
     }

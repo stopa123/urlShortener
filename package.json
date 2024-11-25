@@ -4,7 +4,7 @@
   "description": "Sample Springboot App for AWS Elastic Beanstalk",
   "main": "pom.xml",
   "scripts": {
-    "start": "node UrlShortener.java"
+    "start": "java UrlShortener.java"
   },
   "repository": {
     "type": "git",

@@ -24,6 +24,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 public class Registration implements UserDetails {
     
     
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

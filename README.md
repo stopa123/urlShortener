@@ -3,8 +3,13 @@ The system was developed in Java using Springboot framework and Data stored on M
 
 Code Implementation:
 > SpringBoot Security for secure routes.
+
 > JWT TOKEN to ensure that authorized and authenticated users access system and resources.
+
 > MYSQL for Data Persistance.
+
 > Java random Key generator for unique short url generation.
+
 > Logging for system logs to be generated and used for troubleshooting.
+
 > Java Persistence API for Data Manipulation.

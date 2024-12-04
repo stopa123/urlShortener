@@ -4,12 +4,12 @@ version: 0.0
 os: linux
 
 files:
-  - source: /
-    destination: /home/ec2-user/
+  - source: /home/ec2-user/scripts/
+    destination: /home/ec2-user/scripts/
 
 hooks:
   BeforeInstall:
-    - location: cd/scripts/server_clear.sh
+    - location: server_clear.sh
       timeout: 300
       runas: ec2-user
   AfterInstall:

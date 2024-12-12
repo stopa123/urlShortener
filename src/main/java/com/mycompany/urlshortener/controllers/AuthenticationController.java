@@ -12,8 +12,6 @@ import com.mycompany.urlshortener.services.AuthenticationService;
 import com.mycompany.urlshortener.services.JwtService;
 import com.mycompany.urlshortener.LoginResponse;
 import com.mycompany.urlshortener.entities.Registration;
-import com.mycompany.urlshortener.repositories.LoginRepo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

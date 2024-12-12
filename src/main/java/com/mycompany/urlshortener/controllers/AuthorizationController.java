@@ -5,7 +5,6 @@
 package com.mycompany.urlshortener.controllers;
 
 import com.mycompany.urlshortener.entities.urlShortenerMethods;
-import com.mycompany.urlshortener.repositories.Repo;
 import com.mycompany.urlshortener.services.UserAuthorizerService;
 import static com.mycompany.urlshortener.services.UserAuthorizerService.getEmailAddress;
 import org.springframework.http.ResponseEntity;

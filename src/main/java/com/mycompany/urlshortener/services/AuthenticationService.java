@@ -22,6 +22,7 @@ public class AuthenticationService {
         this.passwordEncoder = passwordEncoder;
     }
 
+    //completed and working
     public Registration signup(Registration input) {
       
         Registration user = new Registration();
@@ -36,6 +37,7 @@ public class AuthenticationService {
         return regRepo.save(user);
     }
 
+    //completed and working
     public Registration authenticate(Registration input) {
 
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(input.getEmail(), input.getPassword()));

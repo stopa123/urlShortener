@@ -31,7 +31,7 @@ public class AuthenticationController {
         this.authenticationService = authenticationService;
     }
 
-    @PostMapping("/signup")
+    @PostMapping("/signup") //completed and working
     public ResponseEntity<Registration> register(@RequestBody Registration registerUser) {
 
         Registration registeredUser = authenticationService.signup(registerUser);
@@ -39,7 +39,7 @@ public class AuthenticationController {
         return ResponseEntity.ok(registeredUser);
     }
 
-    @PostMapping("/login")
+    @PostMapping("/login") //completed and working
     public ResponseEntity<LoginResponse> authenticate(@RequestBody Registration loginUser) {
        
         Registration authenticatedUser = authenticationService.authenticate(loginUser);

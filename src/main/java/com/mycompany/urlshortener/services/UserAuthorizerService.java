@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.mycompany.urlshortener.services;
 
 import com.mycompany.urlshortener.entities.urlShortenerMethods;
@@ -21,6 +18,7 @@ public class UserAuthorizerService {
         this.repo = repo;
     }
 
+    //working and completed
     public urlShortenerMethods createUrl(urlShortenerMethods longURL) {
 
         urlShortenerMethods usm = new urlShortenerMethods();
@@ -33,6 +31,7 @@ public class UserAuthorizerService {
         return repo.save(usm);
     }
 
+    //working and completed
     public String deleteUrl(urlShortenerMethods longURL) {
 
         Optional<urlShortenerMethods> data = repo.findIdByDescriptionAndEmail(longURL.getDescription(), getEmailAddress());
@@ -62,5 +61,7 @@ public class UserAuthorizerService {
         }
         return null;
     }
+    
+    //public String getAllRecordByUser(){}
 
 }

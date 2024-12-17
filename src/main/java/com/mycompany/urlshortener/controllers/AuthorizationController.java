@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.mycompany.urlshortener.controllers;
 
 import com.mycompany.urlshortener.entities.urlShortenerMethods;
@@ -32,6 +29,7 @@ public class AuthorizationController {
         return ResponseEntity.ok(getEmailAddress());
     }
 
+    //working and completed
     @PostMapping("/createurl")
     public ResponseEntity<urlShortenerMethods> createURL(@RequestBody urlShortenerMethods url) {
 
@@ -40,6 +38,7 @@ public class AuthorizationController {
         return ResponseEntity.ok(longURL);
     }
 
+    //working and completed
     @DeleteMapping("/deleteurl")
     public ResponseEntity<Object> DeleteURL(@RequestBody urlShortenerMethods url) {
 

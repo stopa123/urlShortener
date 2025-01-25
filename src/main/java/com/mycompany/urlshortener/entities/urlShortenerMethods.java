@@ -12,14 +12,15 @@ import java.net.URL;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import javax.crypto.KeyGenerator;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity(name = "URLSHORTENER")
+//@Entity(name = "URLSHORTENER")
+@Document(collection = "users")
 public class urlShortenerMethods {
 
     protected static HashMap<String, URL> shortURL = new HashMap<>(); //url hashmap
-
+//@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String longURL;

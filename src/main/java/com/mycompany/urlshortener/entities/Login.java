@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.mycompany.urlshortener.entities;
 
 import jakarta.persistence.Entity;
@@ -10,16 +7,14 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import java.security.NoSuchAlgorithmException;
 import javax.crypto.KeyGenerator;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-/**
- *
- * @author sikhu
- */
-@Entity(name = "LOGIN")
+
+//@Entity(name = "LOGIN")
+@Document(collection = "login")
 public class Login {
-
+ // @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     String token;

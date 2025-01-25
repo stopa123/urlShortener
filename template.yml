@@ -1,0 +1,39 @@
+## YAML Template.
+---
+
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  MySpringBootApplication
+  Sample SAM Template for Spring Boot application
+
+Globals:
+  Function:
+    Timeout: 30
+
+Resources:
+  MySpringBootApplicationFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: com.mycompany.urlshortener.LambdaHandler::handleRequest
+      Runtime: java21
+      CodeUri: .
+      MemorySize: 1024
+      SnapStart:
+          ApplyOn: "PublishedVersions"
+      AutoPublishAlias: "prod"    
+      Environment:
+        Variables:
+          MAIN_CLASS: com.mycompany.urlshortener.UrlShortener
+      Events:
+        MyApi:
+          Type: Api
+          Properties:
+            Path: /{proxy+}
+            Method: ANY
+
+Outputs:
+  MyApiUrl:
+    Description: "URL for endpoint"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/{proxy+}"
+

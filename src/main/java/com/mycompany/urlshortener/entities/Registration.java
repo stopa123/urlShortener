@@ -9,19 +9,18 @@ import jakarta.persistence.Id;
 import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
+import org.bson.types.ObjectId;
+import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-/**
- *
- * @author sikhu
- */
-@Entity(name = "REGISTRATION")
+
+//@Entity(name = "REGISTRATION")
+@Document(collection = "registration")
 public class Registration implements UserDetails {
-    
+    // @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private ObjectId id;
 
     @Column(nullable = false, unique = true)
     private String email;
@@ -42,11 +41,11 @@ public class Registration implements UserDetails {
     private String password;
 
     //setters and getters
-    public Integer getId() {
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 

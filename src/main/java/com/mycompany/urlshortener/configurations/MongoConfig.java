@@ -15,7 +15,6 @@ public class MongoConfig extends AbstractMongoClientConfiguration {
     @Value("${spring.data.mongodb.uri}")
     private String connection;
 
-    //@Value("spring.data.mongodb.dabatase.name")
     private String databaseName = "UrlShortener";
 
     @Override

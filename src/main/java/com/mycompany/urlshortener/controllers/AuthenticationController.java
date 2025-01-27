@@ -1,4 +1,3 @@
-
 package com.mycompany.urlshortener.controllers;
 
 import com.mycompany.urlshortener.services.AuthenticationService;
@@ -9,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RequestMapping("/auth")
@@ -25,8 +25,9 @@ public class AuthenticationController {
     }
 
     @PostMapping("/signup") //completed and working
-    public ResponseEntity<Registration> register(@RequestBody Registration registerUser) {
+    public ResponseEntity<Registration> register(@RequestParam("email") String email, @RequestParam("firstname") String firstname, @RequestParam("lastname") String lastname, @RequestParam("phone") String phone, @RequestParam("organization") String organization, @RequestParam("password") String password) {
 
+        Registration registerUser = new Registration(email, firstname, lastname, phone, organization, password);
         Registration registeredUser = authenticationService.signup(registerUser);
 
         return ResponseEntity.ok(registeredUser);
@@ -34,7 +35,7 @@ public class AuthenticationController {
 
     @PostMapping("/login") //completed and working
     public ResponseEntity<LoginResponse> authenticate(@RequestBody Registration loginUser) {
-       
+
         Registration authenticatedUser = authenticationService.authenticate(loginUser);
 
         String jwtToken = jwtService.generateToken(authenticatedUser);

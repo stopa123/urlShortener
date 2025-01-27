@@ -1,25 +1,17 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
-Description: 'MySpringBootApplication Sample SAM Template for Spring Boot application
+Description: 'SHORTURL Sample SAM Template for URL-Shortener-App
 
   '
-Globals:
-  Function:
-    Timeout: 30
 Resources:
-  MySpringBootApplicationFunction:
+  ShortUrl:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: com.mycompany.urlshortener.LambdaHandler::handleRequest
+      Handler: com.mycompany.urlshortener.lambdaHandler::handleRequest
       Runtime: java21
-      CodeUri: MySpringBootApplicationFunction
-      MemorySize: 1024
-      SnapStart:
-        ApplyOn: PublishedVersions
-      AutoPublishAlias: prod
-      Environment:
-        Variables:
-          MAIN_CLASS: com.mycompany.urlshortener.UrlShortener
+      CodeUri: ShortUrl
+      MemorySize: 2048
+      Timeout: 30
       Events:
         MyApi:
           Type: Api
@@ -27,9 +19,9 @@ Resources:
             Path: /{proxy+}
             Method: ANY
     Metadata:
-      SamResourceId: MySpringBootApplicationFunction
+      SamResourceId: ShortUrl
 Outputs:
   MyApiUrl:
-    Description: URL for endpoint
+    Description: API Gateway endpoint URL
     Value:
-      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/{proxy+}
+      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/

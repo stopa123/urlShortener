@@ -1,40 +1,59 @@
-## YAML Template.
----
-
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: >
   SHORTURL
   Sample SAM Template for URL-Shortener-App
-  
-##Globals:
-##  Function:
-##    Timeout: 30
-##    MemorySize: 2048
+
+Globals:
+  Function:
+    Timeout: 30
+    MemorySize: 2048
 
 Resources:
+  ShortUrlApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: Prod
+      EndpointConfiguration: REGIONAL
+      Auth:
+        DefaultAuthorizer: NONE
+
   ShortUrl:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: com.mycompany.urlshortener.lambdaHandler::handleRequest
+      Handler: com.mycompany.urlshortener.LambdaHandler::handleRequest
       Runtime: java21
       CodeUri: .
-      MemorySize: 2048
-      Timeout: 30
-##      SnapStart:
-##        ApplyOn: "PublishedVersions"
-##      AutoPublishAlias: "prod"
-##      Environment:
-##        Variables:
-##          MAIN_CLASS: com.mycompany.urlshortener.UrlShortener
+
       Events:
-        MyApi:
+#build routes
+        GetRoot:
           Type: Api
           Properties:
+            RestApiId: !Ref ShortUrlApi
+            Path: /
+            Method: GET
+        
+        PostRoot:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ShortUrlApi
+            Path: /auth/signup
+            Method: POST
+        
+        ProxyResource:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ShortUrlApi
             Path: /{proxy+}
             Method: ANY
+    Metadata:
+      BuildMethod: makefile
 
 Outputs:
-  MyApiUrl:
+  WebEndpoint:
     Description: "API Gateway endpoint URL"
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
+    Value: !Sub "https://${ShortUrlApi}.execute-api.${AWS::Region}.amazonaws.com/Prod"
+  FunctionArn:
+    Description: "Lambda Function ARN"
+    Value: !GetAtt ShortUrl.Arn

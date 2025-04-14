@@ -1,7 +1,6 @@
 
 package com.mycompany.urlshortener.configurations;
 
-
 import com.mycompany.urlshortener.middleware.JwtAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

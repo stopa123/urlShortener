@@ -47,5 +47,7 @@ public class AuthenticationController {
 
         return ResponseEntity.ok(loginResponse);
     }
+/* email=tester@gmail.com&firstname=tester&lastname=tester&phone=1234567890&organization=tester&password=XXXXXXXXXXX */
 
+/* &email=&firstname= &lastname, &phone, &organization, &password=testers123! */
 }

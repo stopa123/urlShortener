@@ -24,7 +24,7 @@ Resources:
       Handler: com.mycompany.urlshortener.LambdaHandler::handleRequest
       Runtime: java21
       CodeUri: .
-
+#src.main.java.com.mycompany.urlshortener.LambdaHandler::handleRequest
       Events:
 #build routes
         GetRoot:
